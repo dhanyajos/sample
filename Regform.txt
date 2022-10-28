@@ -1,0 +1,203 @@
+
+.aspx file
+----------------------------------------------------------------------------------------------------------------------------------
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <h1>Registration form</h1>
+
+
+</head>
+<body style="background-color: grey;">
+    <form id="form1" runat="server" align="left">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Name"></asp:Label>
+
+            <asp:TextBox ID="TextBox1" runat="server" Style="margin-left: 93px" Width="184px"></asp:TextBox><br /><br />
+
+            <asp:Label ID="Label2" runat="server" Text="Email"></asp:Label>
+
+            <asp:TextBox ID="TextBox2" runat="server" Style="margin-left: 93px" Width="184px"></asp:TextBox><br /><br />
+           
+
+            <asp:Label ID="Label3" runat="server" Text="Phone"></asp:Label>
+
+            <asp:TextBox ID="TextBox3" runat="server" TextMode="Phone" Style="margin-left: 92px" Width="184px"></asp:TextBox><br /><br />
+
+
+            <asp:Label ID="Label4" runat="server" Text="Gender"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <asp:RadioButton ID="RadioButton1" runat="server" GroupName="gender" Text="Male" />
+            <asp:RadioButton ID="RadioButton2" runat="server" GroupName="gender" Text="Female" />
+            <asp:RadioButton ID="RadioButton3" runat="server" GroupName="gender" Text="Others" /><br /><br />
+
+            <asp:Label ID="Label5" runat="server" Text="Courses"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:CheckBox ID="CheckBox1" runat="server" Text="C" />
+
+            <asp:CheckBox ID="CheckBox2" runat="server" Text="Java" />
+            <asp:CheckBox ID="CheckBox3" runat="server" Text="Dotnet" />
+            <asp:CheckBox ID="CheckBox4" runat="server" Text="Python" />
+            <br /><br />
+
+
+            <asp:Label ID="dob" runat="server" Text="Dob"></asp:Label>
+            <asp:TextBox ID="dobtext" runat="server" Style="margin-left: 106px" Width="184px"></asp:TextBox><br />
+
+
+            <asp:Calendar ID="Calendar1" runat="server" Style="margin-left: 137px" OnSelectionChanged="Calendar1_SelectionChanged" Visible="True"></asp:Calendar>
+            <br /><br />
+
+
+            <asp:Label ID="Label7" runat="server" Text="State"></asp:Label>
+
+            <asp:DropDownList ID="DropDownList1" runat="server" Style="margin-left: 108px">
+                <asp:ListItem Value="">Please Select</asp:ListItem>
+                <asp:ListItem>Kerala</asp:ListItem>
+            </asp:DropDownList>
+            <br /><br />
+
+
+            <asp:Label ID="photo" runat="server" Text="Photo"></asp:Label>
+
+            <asp:FileUpload ID="FileUpload1" runat="server" Style="margin-left: 101px" Width="283px" />
+            <br /><br />
+
+            <asp:Label ID="Label6" runat="server" Text="User Name"></asp:Label>
+            <asp:TextBox ID="TextBox4" runat="server" Style="margin-left: 62px" Width="184px"></asp:TextBox>
+            <br /><br />
+
+            <asp:Label ID="Label8" runat="server" Text="Password"></asp:Label>
+
+            <asp:TextBox ID="TextBox5" runat="server" TextMode="Password" Style="margin-left: 74px" Width="184px"></asp:TextBox>
+            <br /><br />
+
+            <asp:Button ID="Button1" runat="server" Text="Click here" OnClick="Button_Click" />
+            <br />
+        </div>
+
+
+
+        <div>
+            <br />
+            <br />
+            <asp:Label ID="NameLabel" runat="server" Text=""></asp:Label><br />
+            <br />
+
+            <asp:Label ID="EmailLabel" runat="server" Text=""></asp:Label><br />
+            <br />
+
+            <asp:Label ID="PhoneLabel" runat="server" Text=""></asp:Label><br />
+            <br />
+
+            <asp:Label ID="Gender" runat="server" Text=""></asp:Label><br />
+            <br />
+
+            <asp:Label ID="Courses" runat="server" Text=""></asp:Label><br />
+            <br />
+
+            <asp:Label ID="ShowDate" runat="server" Text=""></asp:Label>
+            <br />
+           
+            <asp:Label ID="state" runat="server" Text=""></asp:Label><br />
+            <br />
+            <asp:Label runat="server" ID="FileUploadStatus"></asp:Label>
+            <br />
+            <br />
+            <asp:Label ID="Username" runat="server" Text=""></asp:Label><br />
+            <br />
+
+            <asp:Label ID="Password" runat="server" Text=""></asp:Label><br />
+            <br />
+        </div>
+
+    </form>
+
+</body>
+</html>
+
+---------------------------------------------------------------------------------------------------------------
+.aspx.cs file:
+
+------------------------------
+
+  protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        protected void Button_Click(object sender, EventArgs e)
+        {
+
+            NameLabel.Text = Label1.Text + ":" + TextBox1.Text;
+            EmailLabel.Text = Label2.Text + ":" + TextBox2.Text;
+            PhoneLabel.Text = Label3.Text + ":" + TextBox3.Text;
+
+            if (RadioButton1.Checked)
+            {
+                Gender.Text = Label4.Text + ":" + RadioButton1.Text;
+            }
+            else if (RadioButton2.Checked)
+            {
+                Gender.Text = Label4.Text + ":" + RadioButton2.Text;
+
+            }
+            else
+            {
+                Gender.Text = Label4.Text + ":" + RadioButton3.Text;
+            }
+            ShowDate.Text = dob.Text + ":" + dobtext.Text;
+            var courses = "";
+            if (CheckBox1.Checked)
+            {
+                courses = CheckBox1.Text + " ,";
+            }
+            if (CheckBox2.Checked)
+            {
+                courses += CheckBox2.Text + " ,";
+            }
+            if (CheckBox3.Checked)
+            {
+                courses += CheckBox3.Text + " ,";
+            }
+            if (CheckBox4.Checked)
+            {
+                courses += CheckBox4.Text;
+            }
+            Courses.Text = Label5.Text + ":" + courses;
+
+            if (DropDownList1.SelectedValue != "")
+            {
+
+                state.Text = Label7.Text + ":" + DropDownList1.SelectedValue;
+            }
+
+            if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+            {
+                string fn = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
+                string SaveLocation = Server.MapPath("upload") + "\\" + fn;
+
+                FileUpload1.PostedFile.SaveAs(SaveLocation);
+                FileUploadStatus.Text = photo.Text + ":The file has been uploaded.";
+            }
+            else
+            {
+                FileUploadStatus.Text = photo.Text + ":Please select a file to upload.";
+            }
+
+
+            Username.Text = Label6.Text + ":" + TextBox4.Text;
+            Password.Text = Label8.Text + ":" + TextBox5.Text;
+
+
+        }
+
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            dobtext.Text = Calendar1.SelectedDate.ToShortDateString();
+            Calendar1.Visible = false;
+        }
+
